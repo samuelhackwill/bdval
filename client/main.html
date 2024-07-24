@@ -1,0 +1,165 @@
+<head>
+  <title>bd_valenciennes</title>
+<!--   <script src="https://js.stripe.com/v3/" async></script>
+ -->
+  </head>
+
+<template name="mainLayout">
+  {{> Template.dynamic template=nav}}
+  {{> Template.dynamic template=main}}
+</template>
+
+<!-- 
+***********************
+DESKTOP TEMPLATES BELOW
+***********************
+ -->
+
+<template name="home">
+  <div id="HContainer">
+    {{>reader}}
+  </div>
+
+</template>
+
+<template name="nav">
+  <div id="banierecontainer">
+    <button class="baniereBtn" style="background-image:url('/baniereElemsRead.gif'); {{activeLink arg='reader'}}">reader</button>
+    <button class="baniereBtn" style="background-image:url('/baniereElemsAut.gif'); {{activeLink arg='about'}}">about</button>
+    <button class="baniereBtn" style="background-image:url('/baniereElemsCart.gif'); {{activeLink arg='cart'}}">cart</button>
+    <button class="baniereBtn" style="background-image:url('/baniereElemsContact.gif'); {{activeLink arg='contact'}}">contact</button>
+
+  </div>
+</template>
+
+<!-- 
+**********************
+MOBILE TEMPLATES BELOW
+**********************
+ -->
+
+
+<template name="home_mobile">
+  <div id="VContainer">
+    {{>reader}}
+  </div>
+</template>
+
+
+<template name="nav_mobile">
+  <div id="banierecontainerM">
+     <button class="baniereBtnM" style="background-image:url('/baniereElemsRead.gif'); {{activeLink arg='reader'}}">reader</button>
+     <button class="baniereBtnM" style="background-image:url('/baniereElemsAut.gif'); {{activeLink arg='about'}}">about</button>
+     <button class="baniereBtnM" style="background-image:url('/baniereElemsCart.gif'); {{activeLink arg='cart'}}">cart</button>
+     <button class="baniereBtnM" style="background-image:url('/baniereElemsContact.gif'); {{activeLink arg='contact'}}">contact</button>
+  </div>
+
+</template>
+
+
+<!-- 
+****************
+COMPONENTS BELOW
+****************
+ -->
+
+
+<template name="reader">
+    <div class="buttoncontainers">
+      <button class="previous" id="previous" style="{{ifNotFirstPage}}"></button>
+      <button class="next" id="next" style="{{ifNotLastPage}}"></button>
+    </div>
+    
+    <img src={{page}} alt="illustration" id="illustration" class="bd">
+    
+    <div class="buttoncontainers">
+
+      <button class="previous" id="previousBot" style="{{ifNotFirstPage}}"></button>
+      <button id="like"> {{popEmoji}}</button>
+      <button class="next nextBot" id="nextBot" style="{{ifNotLastPage}}"></button>
+    </div>
+
+    <div class="buttoncontainers">
+      cette page a atteint la popularité : {{popText}} ({{popCount}} clics)
+    </div>
+
+</template>
+
+<template name="cart">
+    <div class="shopping">
+      <div class="itemcontainers">
+        <div id="item1">
+          <button></button>
+          <div class="prix">
+          {{price arg='19'}}€
+          </div>
+          <div class="minibaratin">
+          100 pages<br/>
+          Noir & Blanc A4<br/>
+          + un jouli poster (A2)<br/>
+          </div>
+
+        </div>
+
+        <div id="item2">
+          <button></button>
+        <div class="prix">
+          {{price arg='29'}}€
+        </div>
+        <div class="minibaratin">
+          Iceux,<br/>
+          + une dédicace<br/>
+          de l'auteur yeeeh<br/>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="livraison">
+
+      <label class="livraisoncheck">Livraison par la poste (6 euros)
+        <input id="world" type="radio" name="radio" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      
+      <br/>
+
+      <label class="livraisoncheck">Remise en main propre (Lille ou Bruxelles)
+        <input id="fr" type="radio" name="radio">
+        <span class="checkmark"></span>
+      </label>      
+
+
+    </div>
+</div>
+<!--   <div>yo dawg {{status}}</div>
+ -->
+</template>
+
+<template name="about">
+  <div class="barratin">
+
+Bonjour moi c'est Samuel Hackwill, je suis né dans les années 90 juste à côté du lac d'Aiguebelette, dans les riantes contrées de l'avant-pays savoyard. Après mes études en design textile à Lyon puis en design numérique aux Beaux-arts de Saint-Étienne, j'ai surtout travaillé avec mes camarades de <a href="http://amicaledeproduction.com">l'Amicale de production</a> à Lille, avec mon amie <a href="http://www.entropieproduction.be/-Mathilde-Maillard-Club-Travail-.html">Mathilde Maillard</a> à Bruxelles, et sur mes propres projets dont cette BD à paraître dans le courant de l'été 2020, et également une performance interactive autogérée qui s'appelle <a href="https://www.arte.tv/fr/videos/074719-025-A/samuel-hackwill/">le tiret du six</a> (en cours d'écriture). Aussi je joue à counter-strike, mais je suis pas très fort.
+
+  </div>
+</template>
+
+<template name="contact">
+  <div class="barratin">
+N'hésitez pas à me glisser un mot dans ma boite mail ici même ->
+hackmew@gmail.com. Si vous avez envie d'avoir de mes nouvelles peu souvent (2X par an environ) mais substantiellement, je vous invite à rejoindre mon petit comité de lecteurs.trices en vous inscrivant à <a href="http://shh.ovh">cette adresse</a>. Vous pouvez aussi me suivre sur <a href="https://twitter.com/samhackwill">twitter</a>, mais je n'y écris quasiment jamais parce que ça me fait peur et que les gens comprennent jamais mes tweets lol. Enfin je vous donnerais bien le numéro de téléphone fixe de mon bureau mais pour l'instant mon serveur de téléphonie ip est en panne je suis deg.
+  </div>
+</template>
+
+
+<template name="stripeSuccess">
+  <div class="barratin">
+    Merci pour votre commande! Je vous ferai signe dès que la bd est sortie de presse et qu'elle est postée. (on vise une livraison dans le courant du mois de Septembre).
+  </div>
+</template>
+
+<template name="stripeCancel">
+  <div class="barratin">
+  Woops alors soit il y a eu un problème soit vous avez décidé que vous aviez mieux à faire de votre argent. Aussi pardon j'ai fait une blague y'a que la liste des pays que j'ai déjà visité dans les options de livraison internationale, si vous vouliez commander la bd mais que votre pays est pas dans la liste merci de bien vouloir me contacter par mail.
+  </div>
+</template>
